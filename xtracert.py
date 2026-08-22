@@ -1,3 +1,4 @@
+import argparse
 import subprocess
 import ipaddress
 import json
@@ -169,11 +170,22 @@ def process_domain(domain: str):
 
     return result
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Traceroute one or more hosts and geolocate each public hop")
+    parser.add_argument( "--run", dest="targets")
+    return parser.parse_args()
+
 def main():
-    domains = [
-        "google.com",
-        "cloudflare.com"
-    ]
+    args = parse_args()
+
+    if args.targets:
+        domains = [t.strip() for t in args.targets.split(",") if t.strip()]
+    else:
+        domains = [
+            "google.com",
+            "cloudflare.com"
+        ]
+
     final_result = []
     try:
         for domain in domains:
