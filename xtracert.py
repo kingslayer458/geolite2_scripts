@@ -160,8 +160,10 @@ def process_domain(domain: str):
                 hop_data["network"] = geo_data.get("network")
 
                 organization = geo_data.get("network", {}).get("organization","Unknown")
+                location_data = geo_data.get("location",{})
+                location = f"{location_data.get('country', 'Unknown')}"
 
-            print(f"  Hop {hop_number}: {ip} "f"(PUBLIC) - {organization}")
+            print(f"  Hop {hop_number}: {ip} "f"(PUBLIC) - {location}  {organization}")
 
         else:
             print(f"  Hop {hop_number}: {ip} "f"(PRIVATE)" )
