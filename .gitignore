@@ -3,3 +3,4 @@ config.py
 __pycache__/        
 geolite_check_result.json
 traceroute_geolite_result.json
+venv/
